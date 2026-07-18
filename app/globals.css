@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --color-plate: #0a0d12;
+  --color-plate-raised: #10141b;
+  --color-plate-line: #1e2530;
+  --color-steel-50: #f4f6f8;
+  --color-steel-100: #dde3ea;
+  --color-steel-300: #9fadbd;
+  --color-steel-400: #78889b;
+  --color-steel-500: #57697d;
+  --color-arc-400: #ffb545;
+  --color-arc-500: #f59315;
+  --color-arc-600: #d9760a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-plate);
+  background-image:
+    linear-gradient(var(--color-plate-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-plate-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+}
+
+::selection {
+  background-color: var(--color-arc-500);
+  color: #0a0d12;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.section-heading-number {
+  font-family: var(--font-mono);
+  color: var(--color-arc-500);
+}
+
+@keyframes weld-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.animate-weld-pulse {
+  animation: weld-pulse 2.2s ease-in-out infinite;
+}
