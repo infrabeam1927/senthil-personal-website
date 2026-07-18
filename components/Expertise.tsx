@@ -1,6 +1,31 @@
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import {
+  BadgeIcon,
+  ClipboardIcon,
+  CompassIcon,
+  SearchCheckIcon,
+  ShieldCheckIcon,
+  SparkIcon,
+  ThermometerIcon,
+  TorchIcon,
+  TrendingUpIcon,
+  WrenchIcon,
+} from "@/components/icons";
 import { keyExpertise, standards, weldingProcesses } from "@/lib/resume-data";
+
+const keyExpertiseIcons = [
+  CompassIcon,
+  ShieldCheckIcon,
+  TorchIcon,
+  SparkIcon,
+  WrenchIcon,
+  ThermometerIcon,
+  SearchCheckIcon,
+  ClipboardIcon,
+  TrendingUpIcon,
+  BadgeIcon,
+];
 
 export default function Expertise() {
   return (
@@ -15,14 +40,19 @@ export default function Expertise() {
         </Reveal>
 
         <div className="grid gap-3 sm:grid-cols-2">
-          {keyExpertise.map((item, index) => (
-            <Reveal key={item} delay={(index % 6) * 60}>
-              <div className="flex items-start gap-3 rounded-lg border border-plate-line bg-plate p-4 transition-colors hover:border-arc-500/40">
-                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-arc-500" />
-                <span className="text-sm leading-relaxed text-steel-200">{item}</span>
-              </div>
-            </Reveal>
-          ))}
+          {keyExpertise.map((item, index) => {
+            const Icon = keyExpertiseIcons[index % keyExpertiseIcons.length];
+            return (
+              <Reveal key={item} delay={(index % 6) * 60}>
+                <div className="flex items-center gap-4 rounded-lg border border-plate-line bg-plate p-4 transition-colors hover:border-arc-500/40">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-arc-500/10 p-2 text-arc-400">
+                    <Icon />
+                  </span>
+                  <span className="text-sm leading-relaxed text-steel-200">{item}</span>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
 
         <div className="mt-16 grid gap-10 md:grid-cols-2">
