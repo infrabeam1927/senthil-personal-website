@@ -4,36 +4,105 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 
-  --color-plate: #0a0d12;
-  --color-plate-raised: #10141b;
-  --color-plate-line: #1e2530;
-  --color-steel-50: #f4f6f8;
-  --color-steel-100: #dde3ea;
-  --color-steel-300: #9fadbd;
-  --color-steel-400: #78889b;
-  --color-steel-500: #57697d;
-  --color-steel-600: #3d4a5c;
-  --color-arc-400: #ffb545;
-  --color-arc-500: #f59315;
-  --color-arc-600: #d9760a;
+  --color-plate: var(--plate);
+  --color-plate-raised: var(--plate-raised);
+  --color-plate-line: var(--plate-line);
+  --color-plate-line-strong: var(--plate-line-strong);
+  --color-grid-glow: var(--grid-glow);
+
+  --color-steel-50: var(--steel-50);
+  --color-steel-100: var(--steel-100);
+  --color-steel-200: var(--steel-200);
+  --color-steel-300: var(--steel-300);
+  --color-steel-400: var(--steel-400);
+  --color-steel-500: var(--steel-500);
+  --color-steel-600: var(--steel-600);
+
+  --color-arc-300: var(--arc-300);
+  --color-arc-400: var(--arc-400);
+  --color-arc-500: var(--arc-500);
+  --color-arc-600: var(--arc-600);
+
+  /* Always-dark text for use on top of solid amber fills; intentionally does not flip with theme. */
+  --color-ink: #0a0d12;
+}
+
+/*
+ * steel-* are semantic text tokens (50 = highest emphasis ... 600 = faintest),
+ * not a literal lightness scale, so their values invert between themes.
+ */
+:root {
+  --plate: #eef1f5;
+  --plate-raised: #ffffff;
+  --plate-line: #d7dde5;
+  --plate-line-strong: #c7cfda;
+  --grid-glow: rgba(180, 83, 9, 0.05);
+
+  --steel-50: #10161f;
+  --steel-100: #262f3b;
+  --steel-200: #3c4757;
+  --steel-300: #4b5768;
+  --steel-400: #66748a;
+  --steel-500: #8592a3;
+  --steel-600: #aab4c0;
+
+  --arc-300: #c2660a;
+  --arc-400: #b45309;
+  --arc-500: #92400e;
+  --arc-600: #78350f;
+}
+
+.dark {
+  --plate: #0a0d12;
+  --plate-raised: #10141b;
+  --plate-line: #1e2530;
+  --plate-line-strong: #29323f;
+  --grid-glow: rgba(245, 147, 21, 0.07);
+
+  --steel-50: #f4f6f8;
+  --steel-100: #dde3ea;
+  --steel-200: #c3ccd6;
+  --steel-300: #9fadbd;
+  --steel-400: #78889b;
+  --steel-500: #57697d;
+  --steel-600: #3d4a5c;
+
+  --arc-300: #ffcb7a;
+  --arc-400: #ffb545;
+  --arc-500: #f59315;
+  --arc-600: #d9760a;
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light dark;
+}
+
+.dark {
+  color-scheme: dark;
 }
 
 body {
   background-color: var(--color-plate);
   background-image:
+    radial-gradient(ellipse 70% 45% at 50% -10%, var(--color-grid-glow), transparent),
     linear-gradient(var(--color-plate-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-plate-line) 1px, transparent 1px);
-  background-size: 64px 64px;
+    linear-gradient(90deg, var(--color-plate-line) 1px, transparent 1px),
+    linear-gradient(var(--color-plate-line-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-plate-line-strong) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    32px 32px,
+    32px 32px,
+    128px 128px,
+    128px 128px;
   background-position: center top;
+  transition: background-color 0.3s ease;
 }
 
 ::selection {
   background-color: var(--color-arc-500);
-  color: #0a0d12;
+  color: var(--color-ink);
 }
 
 .text-balance {

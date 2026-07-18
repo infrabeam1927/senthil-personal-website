@@ -51,14 +51,14 @@ export default function Hero() {
             <span className="hidden h-4 w-px bg-plate-line sm:inline-block" />
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex items-center gap-2 hover:text-arc-400"
+              className="-my-2 inline-flex items-center gap-2 py-2 hover:text-arc-400"
             >
               <MailIcon /> {profile.email}
             </a>
             <span className="hidden h-4 w-px bg-plate-line sm:inline-block" />
             <a
               href={`tel:${profile.phone.replace(/\s/g, "")}`}
-              className="inline-flex items-center gap-2 hover:text-arc-400"
+              className="-my-2 inline-flex items-center gap-2 py-2 hover:text-arc-400"
             >
               <PhoneIcon /> {profile.phone}
             </a>
@@ -69,7 +69,7 @@ export default function Hero() {
           <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="#contact"
-              className="rounded bg-arc-500 px-6 py-3 text-sm font-semibold text-plate transition-colors hover:bg-arc-400"
+              className="rounded bg-arc-500 px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-arc-400"
             >
               Get in touch
             </a>
