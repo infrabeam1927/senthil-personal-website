@@ -8,7 +8,7 @@
   --color-plate-raised: var(--plate-raised);
   --color-plate-line: var(--plate-line);
   --color-plate-line-strong: var(--plate-line-strong);
-  --color-grid-glow: var(--grid-glow);
+  --color-bg-glow: var(--bg-glow);
 
   --color-steel-50: var(--steel-50);
   --color-steel-100: var(--steel-100);
@@ -36,7 +36,7 @@
   --plate-raised: #ffffff;
   --plate-line: #d7dde5;
   --plate-line-strong: #c7cfda;
-  --grid-glow: rgba(180, 83, 9, 0.05);
+  --bg-glow: rgba(180, 83, 9, 0.05);
 
   --steel-50: #10161f;
   --steel-100: #262f3b;
@@ -57,7 +57,7 @@
   --plate-raised: #10141b;
   --plate-line: #1e2530;
   --plate-line-strong: #29323f;
-  --grid-glow: rgba(245, 147, 21, 0.07);
+  --bg-glow: rgba(245, 147, 21, 0.07);
 
   --steel-50: #f4f6f8;
   --steel-100: #dde3ea;
@@ -85,17 +85,13 @@ html {
 body {
   background-color: var(--color-plate);
   background-image:
-    radial-gradient(ellipse 70% 45% at 50% -10%, var(--color-grid-glow), transparent),
-    linear-gradient(var(--color-plate-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-plate-line) 1px, transparent 1px),
-    linear-gradient(var(--color-plate-line-strong) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-plate-line-strong) 1px, transparent 1px);
+    radial-gradient(ellipse 70% 45% at 50% -10%, var(--color-bg-glow), transparent),
+    radial-gradient(circle, var(--color-plate-line-strong) 1.5px, transparent 1.5px),
+    radial-gradient(circle, var(--color-plate-line) 1px, transparent 1px);
   background-size:
     100% 100%,
-    32px 32px,
-    32px 32px,
-    128px 128px,
-    128px 128px;
+    112px 112px,
+    28px 28px;
   background-position: center top;
   transition: background-color 0.3s ease;
 }
