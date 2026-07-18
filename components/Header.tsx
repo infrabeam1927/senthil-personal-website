@@ -51,7 +51,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a
           href="#top"
-          className="font-mono text-sm font-semibold tracking-widest text-steel-50"
+          className="-my-2 inline-flex items-center py-2 font-mono text-sm font-semibold tracking-widest text-steel-50"
         >
           K.SK<span className="text-arc-500">/</span>
           <span className="hidden text-steel-400 sm:inline">
@@ -89,7 +89,7 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="flex h-9 w-9 items-center justify-center rounded border border-plate-line text-steel-100 md:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded border border-plate-line text-steel-100 md:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={open}
         >
@@ -108,14 +108,14 @@ export default function Header() {
       </div>
 
       {open ? (
-        <nav className="border-t border-plate-line px-6 py-4 md:hidden">
-          <ul className="flex flex-col gap-4">
+        <nav className="border-t border-plate-line px-2 py-2 md:hidden">
+          <ul className="flex flex-col divide-y divide-plate-line">
             {navItems.map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className={`text-sm ${activeId === item.id ? "text-arc-400" : "text-steel-300 hover:text-arc-400"}`}
+                  className={`block px-4 py-3.5 text-base ${activeId === item.id ? "text-arc-400" : "text-steel-300"}`}
                 >
                   {item.label}
                 </a>
@@ -125,7 +125,7 @@ export default function Header() {
               <a
                 href="/resume.pdf"
                 download
-                className="inline-flex items-center gap-2 text-sm font-medium text-arc-400"
+                className="block px-4 py-3.5 text-base font-medium text-arc-400"
               >
                 Download CV
               </a>
