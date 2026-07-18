@@ -1,17 +1,50 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navItems = [
-  { href: "#about", label: "About" },
-  { href: "#expertise", label: "Expertise" },
-  { href: "#experience", label: "Experience" },
-  { href: "#credentials", label: "Credentials" },
-  { href: "#contact", label: "Contact" },
+  { href: "#about", label: "About", id: "about" },
+  { href: "#expertise", label: "Expertise", id: "expertise" },
+  { href: "#experience", label: "Experience", id: "experience" },
+  { href: "#credentials", label: "Credentials", id: "credentials" },
+  { href: "#contact", label: "Contact", id: "contact" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const sections = navItems
+      .map((item) => document.getElementById(item.id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-plate-line bg-plate/85 backdrop-blur">
@@ -32,7 +65,11 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm text-steel-300 transition-colors hover:text-arc-400"
+              className={`border-b-2 pb-0.5 text-sm transition-colors ${
+                activeId === item.id
+                  ? "border-arc-500 text-arc-400"
+                  : "border-transparent text-steel-300 hover:text-arc-400"
+              }`}
             >
               {item.label}
             </a>
@@ -78,7 +115,7 @@ export default function Header() {
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="text-sm text-steel-300 hover:text-arc-400"
+                  className={`text-sm ${activeId === item.id ? "text-arc-400" : "text-steel-300 hover:text-arc-400"}`}
                 >
                   {item.label}
                 </a>
@@ -96,6 +133,13 @@ export default function Header() {
           </ul>
         </nav>
       ) : null}
+
+      <div className="h-0.5 w-full bg-transparent" aria-hidden="true">
+        <div
+          className="h-full bg-arc-500"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
     </header>
   );
 }

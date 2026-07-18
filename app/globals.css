@@ -12,6 +12,7 @@
   --color-steel-300: #9fadbd;
   --color-steel-400: #78889b;
   --color-steel-500: #57697d;
+  --color-steel-600: #3d4a5c;
   --color-arc-400: #ffb545;
   --color-arc-500: #f59315;
   --color-arc-600: #d9760a;
@@ -56,4 +57,18 @@ body {
 
 .animate-weld-pulse {
   animation: weld-pulse 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

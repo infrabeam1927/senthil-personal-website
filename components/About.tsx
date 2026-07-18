@@ -1,3 +1,4 @@
+import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { profile } from "@/lib/resume-data";
 
@@ -23,27 +24,28 @@ const focusAreas = [
 export default function About() {
   return (
     <section id="about" className="mx-auto max-w-6xl px-6 py-24">
-      <SectionHeading index="01" title="About" subtitle={`Based in ${profile.location}`} />
+      <Reveal>
+        <SectionHeading index="01" title="About" subtitle={`Based in ${profile.location}`} />
+      </Reveal>
 
       <div className="grid gap-12 lg:grid-cols-5">
-        <div className="lg:col-span-3">
+        <Reveal delay={80} className="lg:col-span-3">
           <p className="text-lg leading-relaxed text-steel-200">{profile.summary}</p>
           <p className="mt-5 leading-relaxed text-steel-400">{profile.summarySecondary}</p>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-2">
-          {focusAreas.map((area) => (
-            <div
-              key={area.title}
-              className="rounded-lg border border-plate-line bg-plate-raised p-5"
-            >
-              <h3 className="font-mono text-sm font-semibold text-arc-400">
-                {area.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-steel-400">
-                {area.detail}
-              </p>
-            </div>
+          {focusAreas.map((area, index) => (
+            <Reveal key={area.title} delay={140 + index * 80}>
+              <div className="h-full rounded-lg border border-plate-line bg-plate-raised p-5 transition-colors hover:border-arc-500/40">
+                <h3 className="font-mono text-sm font-semibold text-arc-400">
+                  {area.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-steel-400">
+                  {area.detail}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
