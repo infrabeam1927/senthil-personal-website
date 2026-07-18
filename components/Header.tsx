@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
   { href: "#about", label: "About", id: "about" },
@@ -76,35 +77,37 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+
           <a
             href="/resume.pdf"
             download
-            className="inline-flex items-center gap-2 rounded border border-arc-500/40 bg-arc-500/10 px-4 py-2 text-sm font-medium text-arc-400 transition-colors hover:bg-arc-500/20"
+            className="hidden items-center gap-2 rounded border border-arc-500/40 bg-arc-500/10 px-4 py-2 text-sm font-medium text-arc-400 transition-colors hover:bg-arc-500/20 md:inline-flex"
           >
             Download CV
           </a>
-        </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="flex h-11 w-11 items-center justify-center rounded border border-plate-line text-steel-100 md:hidden"
-          aria-label="Toggle navigation menu"
-          aria-expanded={open}
-        >
-          <span className="relative block h-3 w-4">
-            <span
-              className={`absolute left-0 top-0 h-px w-4 bg-current transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`}
-            />
-            <span
-              className={`absolute left-0 top-[6px] h-px w-4 bg-current transition-opacity ${open ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`absolute left-0 top-[12px] h-px w-4 bg-current transition-transform ${open ? "-translate-y-[6px] -rotate-45" : ""}`}
-            />
-          </span>
-        </button>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-11 w-11 items-center justify-center rounded border border-plate-line text-steel-100 md:hidden"
+            aria-label="Toggle navigation menu"
+            aria-expanded={open}
+          >
+            <span className="relative block h-3 w-4">
+              <span
+                className={`absolute left-0 top-0 h-px w-4 bg-current transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`}
+              />
+              <span
+                className={`absolute left-0 top-[6px] h-px w-4 bg-current transition-opacity ${open ? "opacity-0" : ""}`}
+              />
+              <span
+                className={`absolute left-0 top-[12px] h-px w-4 bg-current transition-transform ${open ? "-translate-y-[6px] -rotate-45" : ""}`}
+              />
+            </span>
+          </button>
+        </div>
       </div>
 
       {open ? (

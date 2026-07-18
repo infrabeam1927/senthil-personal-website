@@ -69,7 +69,7 @@ export default function Hero() {
           <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="#contact"
-              className="rounded bg-arc-500 px-6 py-3 text-sm font-semibold text-plate transition-colors hover:bg-arc-400"
+              className="rounded bg-arc-500 px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-arc-400"
             >
               Get in touch
             </a>

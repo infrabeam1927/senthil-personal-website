@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import StructuredData from "@/components/StructuredData";
 import { siteUrl } from "@/lib/site";
+import { themeInitScript } from "@/lib/theme-script";
 import "./globals.css";
 
 const inter = Inter({
@@ -50,14 +51,28 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#eef1f5" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0d12" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-full bg-plate text-slate-100 antialiased">
+    <html
+      lang="en"
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="min-h-full bg-plate text-steel-100 antialiased">
         <StructuredData />
         {children}
       </body>
