@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import StructuredData from "@/components/StructuredData";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,8 +15,6 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
 });
-
-const siteUrl = "https://senthilkumar-portfolio.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "K. Senthilkumar — Technical Manager | Welding & Quality Specialist",
     description:
       "25+ years leading welding engineering, quality assurance, and API/ASME compliance for Oil & Gas manufacturing, repair, and remanufacturing.",
@@ -58,6 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-full bg-plate text-slate-100 antialiased">
+        <StructuredData />
         {children}
       </body>
     </html>
