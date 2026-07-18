@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import { BadgeIcon, GraduationCapIcon } from "@/components/icons";
 import { certifications, education } from "@/lib/resume-data";
 
 export default function Credentials() {
@@ -26,10 +27,15 @@ export default function Credentials() {
               {education.map((item) => (
                 <li
                   key={item.degree}
-                  className="rounded-lg border border-plate-line bg-plate p-5 transition-colors hover:border-arc-500/40"
+                  className="flex items-start gap-4 rounded-lg border border-plate-line bg-plate p-5 transition-colors hover:border-arc-500/40"
                 >
-                  <p className="font-semibold text-steel-100">{item.degree}</p>
-                  <p className="mt-1 text-sm text-steel-400">{item.institution}</p>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-arc-500/10 p-2 text-arc-400">
+                    <GraduationCapIcon />
+                  </span>
+                  <span>
+                    <p className="font-semibold text-steel-100">{item.degree}</p>
+                    <p className="mt-1 text-sm text-steel-400">{item.institution}</p>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -43,9 +49,11 @@ export default function Credentials() {
               {certifications.map((cert) => (
                 <li
                   key={cert}
-                  className="flex items-start gap-3 rounded-lg border border-plate-line bg-plate p-4 text-sm leading-relaxed text-steel-300 transition-colors hover:border-arc-500/40"
+                  className="flex items-center gap-4 rounded-lg border border-plate-line bg-plate p-4 text-sm leading-relaxed text-steel-300 transition-colors hover:border-arc-500/40"
                 >
-                  <CertIcon />
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-arc-500/10 p-2 text-arc-400">
+                    <BadgeIcon />
+                  </span>
                   {cert}
                 </li>
               ))}
@@ -54,24 +62,5 @@ export default function Credentials() {
         </div>
       </div>
     </section>
-  );
-}
-
-function CertIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className="mt-0.5 h-4 w-4 shrink-0 text-arc-500"
-      aria-hidden="true"
-    >
-      <path
-        d="m5 13 4 4L19 7"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }
